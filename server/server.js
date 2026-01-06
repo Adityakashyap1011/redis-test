@@ -1,9 +1,8 @@
 import express from "express"
 import dotenv from "dotenv"
-import redisClient from "./config/redis.js";
+// import redisClient from "./config/redis.js";
 import connectDB from "./config/db.js";
-// import itemRoutes from "./routes/item.routes.js";
-
+import itemRoutes from "./routes/item.routes.js";
 
 
 dotenv.config();
@@ -13,7 +12,7 @@ app.use(express.json());
 
 const PORT=process.env.PORT||5000
 
-// app.use("/api/items", itemRoutes);
+app.use("/api", itemRoutes);
 
 app.get('/',(req,res)=>{
     res.send("Hello from server");

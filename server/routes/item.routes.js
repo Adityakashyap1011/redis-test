@@ -8,6 +8,6 @@ router.post("/items", rateLimiter, createItem);
 
 router.get("/items/:id", rateLimiter, getItemById);
 
-router.put("/items/:id", rateLimiter, updateItemById);
+router.post("/items/:id", rateLimiter, updateItemById);
 
 export default router;

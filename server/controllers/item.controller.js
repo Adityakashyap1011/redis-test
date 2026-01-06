@@ -29,13 +29,14 @@ export const getItemById= async(req,res)=>{
         if(!itemFromDB){
             return res.status(404).json({message:"Item not found"});
         }
-        await redisClient.set(key,JSON.stringify(itemFromDB), 3600);
+        const str= JSON.stringify(itemFromDB)
+        await redisClient.set(key,str,"EX",3600)
         return res.status(200).json({message:"Item fetched from database", item: itemFromDB});
     }
     catch (error) {
         return res.status(500).json({
             message: "Failed to fetch item",
-            error: error.message
+            error: error
         })
     }
 }

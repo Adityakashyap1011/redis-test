@@ -3,7 +3,7 @@ import redis from "../config/redis.js";
 const WINDOW_SIZE = 60;
 const MAX_REQUESTS = 10;
 
-export const rateLimiter = async(req, res, next)=>{
+const rateLimiter = async(req, res, next)=>{
     try{
         const clientIP=req.ip;
         const cnt= await redis.incr(clientIP);
@@ -22,3 +22,4 @@ export const rateLimiter = async(req, res, next)=>{
         });
     }
 }
+export default rateLimiter;
